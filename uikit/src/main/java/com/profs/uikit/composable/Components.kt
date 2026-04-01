@@ -24,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,24 +36,16 @@ import com.profs.uikit.theme.Pink1
 @Composable
 fun Pagination(index: Int) {
     Row(Modifier, Arrangement.spacedBy(10.dp), Alignment.CenterVertically) {
-        Box(
-            Modifier
-                .size(10.dp)
-                .clip(CircleShape)
-                .background(if (index == 1) Pink1 else Pink1.copy(0.35f))
-        )
-        Box(
-            Modifier
-                .size(10.dp)
-                .clip(CircleShape)
-                .background(if (index == 2) Pink1 else Pink1.copy(0.35f))
-        )
-        Box(
-            Modifier
-                .size(10.dp)
-                .clip(CircleShape)
-                .background(if (index == 3) Pink1 else Pink1.copy(0.35f))
-        )
+        repeat(3) { i ->
+            val isSelected = index == i + 1
+
+            Box(
+                Modifier
+                    .size(10.dp)
+                    .clip(CircleShape)
+                    .background(if (isSelected) Pink1 else Pink1.copy(0.35f))
+            )
+        }
     }
 }
 
@@ -94,8 +87,14 @@ private fun SelectPreview() {
         sheetContent = {},
         Modifier.fillMaxSize(),
         scaffoldState = rememberBottomSheetScaffoldState(),
-        sheetPeekHeight = if (sheet) 800.dp else 0.dp
+        sheetPeekHeight = if (sheet) 800.dp else 0.dp,
     ) {
-        Select(Modifier.width(120.dp), "MON, NOV 4,2019", "From") { sheet = !sheet }
+        Box {
+
+            Select(modifier = Modifier.width(320.dp), "MON, NOV 4,2019", "From") {
+                sheet = !sheet
+            }
+        }
+
     }
 }
