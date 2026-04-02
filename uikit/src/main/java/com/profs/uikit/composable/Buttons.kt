@@ -21,7 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.profs.gaametiime.presentation.theme.Typography
+import com.profs.uikit.theme.Typography
 import com.profs.uikit.R
 import com.profs.uikit.theme.DefaultWhite
 import com.profs.uikit.theme.Pink1

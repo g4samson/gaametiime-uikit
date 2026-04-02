@@ -27,7 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.profs.gaametiime.presentation.theme.Typography
+import com.profs.uikit.theme.Typography
 import com.profs.uikit.R
 import com.profs.uikit.theme.DefaultWhite
 import com.profs.uikit.theme.Pink4
@@ -82,4 +82,29 @@ private fun CustomContainerImagePreview() {
         R.drawable.forward_arrow,
         R.drawable.image
     ) {}
+}
+
+@Composable
+fun CustomContainerTimer(modifier: Modifier = Modifier, value: String, title: String) {
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(10.dp))
+            .background(Brush.linearGradient(listOf(Pink4, Pink5)))
+            .padding(7.dp)
+            .then(modifier)
+    ) {
+        Column(Modifier.fillMaxWidth(), Arrangement.Top, Alignment.CenterHorizontally) {
+            Text(title, style = Typography.bodySmall.copy(DefaultWhite))
+            Spacer(Modifier.height(14.dp))
+            Text(value, style = Typography.titleLarge.copy(DefaultWhite, 30.sp, FontWeight.Bold))
+            Spacer(Modifier.height(14.dp))
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun CustomContainerTimerPreview() {
+    CustomContainerTimer(Modifier, "00:00", "Timer")
 }
