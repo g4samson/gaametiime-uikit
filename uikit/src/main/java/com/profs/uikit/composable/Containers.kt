@@ -38,7 +38,6 @@ fun CustomContainerImage(
     modifier: Modifier = Modifier,
     title: String,
     desc: String,
-    iconResId: Int,
     imageResId: Int,
     onClick: () -> Unit
 ) {
@@ -52,8 +51,8 @@ fun CustomContainerImage(
             .clickable { onClick() }
             .then(modifier)
     ) {
-        Row(Modifier.fillMaxWidth(), Arrangement.SpaceBetween, Alignment.CenterVertically) {
-            Column(Modifier, Arrangement.Top, Alignment.Start) {
+        Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+            Column(Modifier.fillMaxWidth(), Arrangement.Top, Alignment.Start) {
                 Text(
                     title,
                     style = Typography.bodySmall.copy(DefaultWhite, fontWeight = FontWeight.Bold)
@@ -61,13 +60,15 @@ fun CustomContainerImage(
                 Spacer(Modifier.height(14.dp))
                 Text(desc, style = Typography.bodySmall.copy(DefaultWhite, 10.sp))
                 Spacer(Modifier.height(42.dp))
-                Icon(painterResource(iconResId), null, Modifier.size(16.dp), DefaultWhite)
+                Icon(painterResource(R.drawable.forward_arrow), null, Modifier.size(16.dp), DefaultWhite)
             }
-            Image(
-                painterResource(imageResId), null,
-                Modifier.size(110.dp),
-                contentScale = ContentScale.FillWidth
-            )
+            Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
+                Image(
+                    painterResource(imageResId), null,
+                    Modifier.size(110.dp),
+                    contentScale = ContentScale.FillWidth
+                )
+            }
         }
     }
 }
@@ -79,7 +80,6 @@ private fun CustomContainerImagePreview() {
         Modifier,
         stringResource(R.string.title),
         stringResource(R.string.desc),
-        R.drawable.forward_arrow,
         R.drawable.image
     ) {}
 }
