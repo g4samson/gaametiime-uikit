@@ -41,7 +41,6 @@ fun CustomContainerImage(
     imageResId: Int,
     onClick: () -> Unit
 ) {
-
     Box(
         Modifier
             .fillMaxWidth()

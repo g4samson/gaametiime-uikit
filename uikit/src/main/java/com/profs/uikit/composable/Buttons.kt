@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -29,11 +30,11 @@ import com.profs.uikit.theme.Pink4
 import com.profs.uikit.theme.Pink5
 
 @Composable
-fun CustomRoundedButton(value: String, onClick: () -> Unit) {
+fun CustomRoundedButton(modifier: Modifier, value: String, onClick: () -> Unit) {
     Button(
         { onClick() },
         Modifier
-            .fillMaxWidth()
+            .width(210.dp)
             .height(58.dp)
             .background(
                 Brush.linearGradient(
@@ -53,7 +54,7 @@ fun CustomRoundedButton(value: String, onClick: () -> Unit) {
 @Preview
 @Composable
 private fun CustomRoundedButtonPreview() {
-    CustomRoundedButton("Let’s Combat!") {}
+    CustomRoundedButton(Modifier, "Let’s Combat!") {}
 }
 
 @Composable
