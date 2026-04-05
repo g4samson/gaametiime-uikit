@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -44,11 +45,11 @@ fun CustomContainerImage(
 
     Box(
         Modifier
-            .fillMaxWidth()
+            .fillMaxWidth().clickable { onClick() }
             .clip(RoundedCornerShape(10.dp))
             .background(Brush.linearGradient(listOf(Pink4, Pink5)))
             .padding(24.dp)
-            .clickable { onClick() }
+            .height(160.dp)
             .then(modifier)
     ) {
         Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
@@ -65,8 +66,8 @@ fun CustomContainerImage(
             Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
                 Image(
                     painterResource(imageResId), null,
-                    Modifier.size(110.dp),
-                    contentScale = ContentScale.FillWidth
+                    Modifier.fillMaxHeight(),
+                    contentScale = ContentScale.FillHeight
                 )
             }
         }
@@ -80,7 +81,7 @@ private fun CustomContainerImagePreview() {
         Modifier,
         stringResource(R.string.title),
         stringResource(R.string.desc),
-        R.drawable.image
+        R.drawable.image8
     ) {}
 }
 

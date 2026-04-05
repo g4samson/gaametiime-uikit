@@ -1,11 +1,18 @@
 package com.profs.uikit.composable
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -16,10 +23,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.profs.uikit.R
+import com.profs.uikit.theme.DefaultBlack
 import com.profs.uikit.theme.Typography
 import com.profs.uikit.theme.Pink4
 import com.profs.uikit.theme.Pink5
@@ -32,7 +42,7 @@ fun CustomTextField(
     onValueChange: (String) -> Unit
 ) {
     var textFieldValue by remember { mutableStateOf(value) }
-    var isPasswordVisible by remember { mutableStateOf(true) }
+    var isPasswordVisible by remember { mutableStateOf(false) }
 
     BasicTextField(
         textFieldValue,
@@ -53,7 +63,23 @@ fun CustomTextField(
                         style = Typography.bodySmall
                     )
                 }
-                innerTextField()
+                Row(Modifier.fillMaxWidth(), Arrangement.SpaceBetween, Alignment.CenterVertically) {
+                    innerTextField()
+                    if (type == "password") {
+                        IconButton(
+                            { isPasswordVisible = !isPasswordVisible },
+                            Modifier.padding(end = 6.dp).size(12.dp)
+                        ) {
+                            Icon(
+                                painterResource(
+                                    R.drawable.invisible
+                                ), null, Modifier.fillMaxSize(),
+                                DefaultBlack
+                            )
+                        }
+                    }
+                }
+
                 Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
                     Box(
                         Modifier
@@ -73,5 +99,8 @@ fun CustomTextField(
 @Preview
 @Composable
 private fun CustomTextFieldPreview() {
+    Column {
     CustomTextField("Full Name", "", "") { }
+        CustomTextField("Password", "", "password") { }
+    }
 }

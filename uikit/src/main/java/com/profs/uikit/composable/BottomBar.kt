@@ -30,7 +30,7 @@ import com.profs.uikit.R
 import com.profs.uikit.theme.DefaultWhite
 
 @Composable
-fun CustomBottomBar(modifier: Modifier = Modifier, onCenterClick: () -> Unit) {
+fun CustomBottomBar(modifier: Modifier = Modifier, on1Click: () -> Unit, on2Click: () -> Unit, onCenterClick: () -> Unit, on3Click: () -> Unit, on4Click: () -> Unit) {
 
     Box(modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
         Image(
@@ -53,15 +53,15 @@ fun CustomBottomBar(modifier: Modifier = Modifier, onCenterClick: () -> Unit) {
                 Arrangement.SpaceBetween,
                 Alignment.CenterVertically
             ) {
-                CustomBottomBarItem(Modifier, "Statistics", R.drawable.statistics_icon) { }
-                CustomBottomBarItem(Modifier, "Discover", R.drawable.location_pin) { }
+                CustomBottomBarItem(Modifier, "Statistics", R.drawable.statistics_icon) { on1Click() }
+                CustomBottomBarItem(Modifier, "Discover", R.drawable.location_pin) {on2Click() }
             }
             Row(
                 Modifier
                     .fillMaxWidth(0.48f), Arrangement.SpaceBetween, Alignment.CenterVertically
             ) {
-                CustomBottomBarItem(Modifier, "Chat", R.drawable.chat) { }
-                CustomBottomBarItem(Modifier, "Profile", R.drawable.profile) { }
+                CustomBottomBarItem(Modifier, "Chat", R.drawable.chat) { on3Click()}
+                CustomBottomBarItem(Modifier, "Profile", R.drawable.profile) { on4Click()}
             }
         }
 
@@ -103,6 +103,6 @@ private fun CustomBottomBarItem(
 @Composable
 private fun CustomBottomBarPreview() {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-        CustomBottomBar(Modifier) { }
+        CustomBottomBar(Modifier, {}, {}, {}, {}, {})
     }
 }
